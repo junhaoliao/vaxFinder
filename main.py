@@ -3,11 +3,13 @@ from datetime import datetime, timedelta
 
 import requests
 
-
-# DOSE = "Pfizer Dose 3"
+# FIXME: uncomment only one of below to select the wanted dose
 # DOSE = "Pfizer Dose 1"
 # DOSE = "Pfizer Dose 2"
-DOSE = "Moderna Dose 3"
+DOSE = "Pfizer Dose 3"
+# DOSE = "Moderna Dose 1"
+# DOSE = "Moderna Dose 2"
+# DOSE = "Moderna Dose 3"
 
 BRAND = DOSE.split()[0]
 
