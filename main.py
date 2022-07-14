@@ -4,14 +4,15 @@ from datetime import datetime, timedelta
 import requests
 
 # FIXME: uncomment only one of below to select the wanted dose
-# DOSE = "Pfizer Dose 1"
-# DOSE = "Pfizer Dose 2"
-DOSE = "Pfizer Dose 3"
-# DOSE = "Moderna Dose 1"
-# DOSE = "Moderna Dose 2"
-# DOSE = "Moderna Dose 3"
+# DOSE, BRAND = "Pfizer Dose 1", "Pfizer"
+# DOSE, BRAND = "Pfizer Dose 2", "Pfizer"
+DOSE, BRAND = "Booster - Pfizer", "Pfizer"
+# DOSE, BRAND = "Moderna Dose 1", "Moderna"
+# DOSE, BRAND = "Moderna Dose 2", "Moderna"
+# DOSE, BRAND = "Booster - Moderna", "Moderna"
 
-BRAND = DOSE.split()[0]
+# FIXME: enter the location to get the closest pharmacy
+LOCATION_LAT, LOCATION_LON = 43.706323, -79.312976
 
 START_DATE = datetime.now().strftime("%Y-%m-%d")
 END_DATE = (datetime.now() + timedelta(30)).strftime("%Y-%m-%d")
@@ -29,7 +30,8 @@ if __name__ == '__main__':
         "Origin": "https://shoppersdrugmart.medmeapp.com"
     }
 
-    stores_url = 'https://www1.shoppersdrugmart.ca/sdmapi/store/GetCovidShotStores?lang=en&covidBrands=&lat=43.7949488&lng=-79.2356212&minLat=40&minLng=-80&maxLat=45&maxLng=-76'
+    stores_url = f'https://www1.shoppersdrugmart.ca/sdmapi/store/GetCovidShotStores?lang=en&covidBrands=&' \
+                 f'lat={LOCATION_LAT}&lng={LOCATION_LON}&minLat=40&minLng=-80&maxLat=45&maxLng=-76 '
     stores_request = requests.get(stores_url)
     stores_result = json.loads(stores_request.content)
 
